@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "b3334d79-6500-48fc-a37f-71223f56768c",
+		"name": "Practica 4 - Security",
+		"description": "API REST\r\ntendrá las siguientes operaciones:\r\n\r\n● Obtener un listado con el identificador y el título de cada uno de los libros (pero no el resto de la  información)\r\n● Obtener toda la información de un libro determinado (comentarios incluidos)\r\n● Crear un libro\r\n● Crear un comentario asociado al libro\r\n● Borrar un comentario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nick\": \"admin\",\n    \"email\": \"admin@admin.es\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nick\": \"admin\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4YWM1ZWE4OWU4YjZkZjNhNmQ3YyIsImlhdCI6MTYxMTA0MTQ3NywiZXhwIjoxNjExMTI3ODc3fQ.IEiv3jOsyu3GRDfsPF_UB9r0KuPk-e6pBOrfF3oeODY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/users/admin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    \"title\": \"Clean Code: A Handbook of Agile Software Craftsmanship\",\n    \"summary\": \"Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn’t have to be that way. Noted software expert Robert C. Martin, presents a revolutionary paradigm with Clean Code: A Handbook of Agile Software Craftsmanship. Martin, who has helped bring agile principles from a practitioner’s point of view to tens of thousands of programmers, has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code “on the fly” into a book that will instill within you the values of software craftsman, and make you a better programmer―but only if you work at it. What kind of work will you be doing? You’ll be reading code―lots of code. And you will be challenged to think about what’s right about that code, and what’s wrong with it. More importantly you will be challenged to reassess your professional values and your commitment to your craft.   Clean Code is divided into three parts. The first describes the principles, patterns, and practices of writing clean code. The second part consists of several case studies of increasing complexity. Each case study is an exercise in cleaning up code―of transforming a code base that has some problems into one that is sound and efficient. The third part is the payoff: a single chapter containing a list of heuristics and “smells” gathered while creating the case studies. The result is a knowledge base that describes the way we think when we write, read, and clean code.   Readers will come away from this book understanding How to tell the difference between good and bad code How to write good code and how to transform bad code into good code How to create good names, good functions, good objects, and good classes How to format code for maximum readability How to implement complete error handling without obscuring code logic How to unit test and practice test-driven development What “smells” and heuristics can help you identify bad code This book is a must for any developer, software engineer, project manager, team lead, or systems analyst with an interest in producing better code.\",\n    \"author\": \"Robert C. Martin\",\n    \"publisher\": \"Prentice Hall\",\n    \"publicationYear\": 2008\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nick\": \"admin\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/60068e9e9cdfe7bba1900f1d",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"60068e9e9cdfe7bba1900f1d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a book comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userNick\": \"admin\",\r\n    \"comment\": \"Caperucita mola todo\",\r\n    \"score\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/60068e9e9cdfe7bba1900f1d/comments/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"60068e9e9cdfe7bba1900f1d",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/users/admin/comments",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users",
+						"admin",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a book comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/books/60068e9e9cdfe7bba1900f1d/comments/60068ecc9cdfe7bba1900f1e",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"60068e9e9cdfe7bba1900f1d",
+						"comments",
+						"60068ecc9cdfe7bba1900f1e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/books/60068e7c6d4fb2bb3a1a4849",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"60068e7c6d4fb2bb3a1a4849"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"nick\": \"admin\",\r\n        \"email\": \"lol@admin.com\",\r\n        \"password\": \"password\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/users/admin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZjcxODQ2NjE5YmM2MTVhYzVjNCIsImlhdCI6MTYxMTA0MjY3MywiZXhwIjoxNjExMTI5MDczfQ.lswPxw4GtAAAeZyvgChERlaL_HINh6ETEGWRwZBPe9U",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:8443/users/admin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"users",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bearer  eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2MTEwMjU2NjgsImlzcyI6IndoYXRldmVyIiwic3ViIjoiYWRtaW4iLCJleHAiOjE2MTE4ODk2Njh9.jABLq4at8Qlvj0HDJwEixhenpmiLso7a7gzIwJ6VLNsemwFPcRBQMG6kaH9NJTrJCHx9UGNXxYO2ehkWYbS15g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwMDY4ZTkyOWNkZmU3YmJhMTkwMGYxYiIsImlhdCI6MTYxMTA0MjQ1MCwiZXhwIjoxNjExMTI4ODUwfQ.wRnQA3fgwWsSEUDc0Mvt-jddIngmm31FEPLp_XPnPnM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    \"title\": \"Clean Code: A Handbook of Agile Software Craftsmanship\",\n    \"summary\": \"Even bad code can function. But if code isn’t clean, it can bring a development organization to its knees\",\n    \"author\": \"Robert C. Martin\",\n    \"publisher\": \"Prentice Hall\",\n    \"publicationYear\": 2009\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/books/60068e7c6d4fb2bb3a1a4849",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"books",
+						"60068e7c6d4fb2bb3a1a4849"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
